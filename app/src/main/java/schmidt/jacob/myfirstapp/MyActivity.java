@@ -4,12 +4,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.content.Intent;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
 
 public class MyActivity extends ActionBarActivity {
-
+    public final static String EDIT_IDENTIFIER = "schmidt.jacob.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,5 +40,13 @@ public class MyActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText edit = (EditText) findViewById(R.id.edit_message);
+
+        intent.putExtra("EDIT_MESSAGE", edit.getText().toString());
+        startActivity(intent);
     }
 }
